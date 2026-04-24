@@ -140,7 +140,7 @@ const estilos = StyleSheet.create({
     marginTop: 2,
   },
   lista: {
-    paddingBottom: 92,
+    paddingBottom: 136,
   },
   card: {
     backgroundColor: '#111827',
@@ -218,14 +218,16 @@ const estilos = StyleSheet.create({
   listaVazia: {
     flexGrow: 1,
     justifyContent: 'center',
-    paddingBottom: 92,
+    paddingBottom: 136,
   },
   rodape: {
     position: 'absolute',
     left: 0,
     right: 0,
-    bottom: 0,
-    padding: 12,
+    bottom: 36,
+    paddingHorizontal: 12,
+    paddingTop: 10,
+    paddingBottom: 10,
     backgroundColor: '#0F172A',
     borderTopWidth: 1,
     borderTopColor: '#1F2937',
