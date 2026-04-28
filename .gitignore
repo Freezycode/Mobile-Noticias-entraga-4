@@ -3,6 +3,13 @@
 # dependencies
 node_modules/
 
+# backend
+backend/node_modules/
+backend/dist/
+backend/dev.sqlite
+backend/dev.sqlite-wal
+backend/dev.sqlite-shm
+
 # Expo
 .expo/
 dist/

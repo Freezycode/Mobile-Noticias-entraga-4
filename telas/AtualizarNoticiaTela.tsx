@@ -12,7 +12,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { editarNoticia } from '../banco/dadosNoticias';
+import { editarNoticia } from '../services/api';
 import { RotasParam } from '../rotas/RotasParam';
 
 type Rota = RouteProp<RotasParam, 'AtualizarNoticia'>;
@@ -23,14 +23,12 @@ export function AtualizarNoticiaTela() {
   const inicial = useMemo(() => rota.params.noticiaLocal, [rota.params.noticiaLocal]);
 
   const [titulo, setTitulo] = useState(inicial.titulo);
-  const [resumo, setResumo] = useState(inicial.resumo);
-  const [conteudo, setConteudo] = useState(inicial.conteudo);
-  const [autor, setAutor] = useState(inicial.autor);
+  const [descricao, setDescricao] = useState(inicial.descricao);
   const [data, setData] = useState(inicial.data);
   const [salvando, setSalvando] = useState(false);
 
   async function salvar() {
-    if (!titulo.trim() || !resumo.trim() || !conteudo.trim() || !autor.trim() || !data.trim()) {
+    if (!titulo.trim() || !descricao.trim() || !data.trim()) {
       Alert.alert('Atenção', 'Preencha todos os campos.');
       return;
     }
@@ -40,9 +38,7 @@ export function AtualizarNoticiaTela() {
       await editarNoticia({
         id: inicial.id,
         titulo: titulo.trim(),
-        resumo: resumo.trim(),
-        conteudo: conteudo.trim(),
-        autor: autor.trim(),
+        descricao: descricao.trim(),
         data: data.trim(),
       });
       navegacao.goBack();
@@ -73,41 +69,18 @@ export function AtualizarNoticiaTela() {
           </View>
 
           <View style={estilos.caixa}>
-            <Text style={estilos.rotulo}>Resumo</Text>
+            <Text style={estilos.rotulo}>Descrição</Text>
             <TextInput
-              value={resumo}
-              onChangeText={setResumo}
-              style={[estilos.entrada, estilos.entradaMultilinha]}
-              placeholder="Resumo"
-              placeholderTextColor="#64748B"
-              multiline
-            />
-          </View>
-
-          <View style={estilos.caixa}>
-            <Text style={estilos.rotulo}>Conteúdo</Text>
-            <TextInput
-              value={conteudo}
-              onChangeText={setConteudo}
+              value={descricao}
+              onChangeText={setDescricao}
               style={[estilos.entrada, estilos.entradaAlta]}
-              placeholder="Conteúdo"
+              placeholder="Descrição"
               placeholderTextColor="#64748B"
               multiline
             />
           </View>
 
           <View style={estilos.duasColunas}>
-            <View style={[estilos.caixa, estilos.metade]}>
-              <Text style={estilos.rotulo}>Autor</Text>
-              <TextInput
-                value={autor}
-                onChangeText={setAutor}
-                style={estilos.entrada}
-                placeholder="Autor"
-                placeholderTextColor="#64748B"
-              />
-            </View>
-
             <View style={[estilos.caixa, estilos.metade]}>
               <Text style={estilos.rotulo}>Data</Text>
               <TextInput

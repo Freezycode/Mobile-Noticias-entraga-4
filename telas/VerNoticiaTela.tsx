@@ -13,20 +13,14 @@ export function VerNoticiaTela() {
       <ScrollView contentContainerStyle={estilos.conteudo}>
         <Text style={estilos.titulo}>{noticiaLocal.titulo}</Text>
 
-        <View style={estilos.faixa}>
-          <Text style={estilos.info}>{noticiaLocal.autor}</Text>
-          <Text style={estilos.separador}>•</Text>
-          <Text style={estilos.info}>{noticiaLocal.data}</Text>
+        <View style={estilos.bloco}>
+          <Text style={estilos.rotulo}>Data</Text>
+          <Text style={estilos.texto}>{noticiaLocal.data}</Text>
         </View>
 
         <View style={estilos.bloco}>
-          <Text style={estilos.rotulo}>Resumo</Text>
-          <Text style={estilos.texto}>{noticiaLocal.resumo}</Text>
-        </View>
-
-        <View style={estilos.bloco}>
-          <Text style={estilos.rotulo}>Conteúdo</Text>
-          <Text style={estilos.texto}>{noticiaLocal.conteudo}</Text>
+          <Text style={estilos.rotulo}>Descrição</Text>
+          <Text style={estilos.texto}>{noticiaLocal.descricao}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -47,20 +41,6 @@ const estilos = StyleSheet.create({
     fontSize: 22,
     fontWeight: '900',
     lineHeight: 28,
-  },
-  faixa: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 10,
-    gap: 8,
-  },
-  info: {
-    color: '#94A3B8',
-    fontSize: 12,
-  },
-  separador: {
-    color: '#94A3B8',
-    fontSize: 12,
   },
   bloco: {
     backgroundColor: '#111827',

@@ -10,7 +10,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { excluirNoticia, listarNoticias } from '../banco/dadosNoticias';
+import { excluirNoticia, listarNoticias } from '../services/api';
 import { NoticiaLocal } from '../modelos/NoticiaLocal';
 import { RotasParam } from '../rotas/RotasParam';
 
@@ -67,12 +67,10 @@ export function InicioTela() {
               {item.titulo}
             </Text>
             <Text style={estilos.cardResumo} numberOfLines={2}>
-              {item.resumo}
+              {item.descricao}
             </Text>
 
             <View style={estilos.linhaInfo}>
-              <Text style={estilos.textoInfo}>{item.autor}</Text>
-              <Text style={estilos.pontinho}>•</Text>
               <Text style={estilos.textoInfo}>{item.data}</Text>
             </View>
 

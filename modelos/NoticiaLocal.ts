@@ -1,9 +1,7 @@
 export type NoticiaLocal = {
   id: number;
   titulo: string;
-  resumo: string;
-  conteudo: string;
-  autor: string;
+  descricao: string;
   data: string;
 };
 

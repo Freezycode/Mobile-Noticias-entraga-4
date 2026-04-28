@@ -12,7 +12,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { adicionarNoticia } from '../banco/dadosNoticias';
+import { adicionarNoticia } from '../services/api';
 
 function dataDeHoje() {
   const agora = new Date();
@@ -25,14 +25,12 @@ function dataDeHoje() {
 export function NovaNoticiaTela() {
   const navegacao = useNavigation();
   const [titulo, setTitulo] = useState('');
-  const [resumo, setResumo] = useState('');
-  const [conteudo, setConteudo] = useState('');
-  const [autor, setAutor] = useState('');
+  const [descricao, setDescricao] = useState('');
   const [data, setData] = useState(dataDeHoje());
   const [salvando, setSalvando] = useState(false);
 
   async function salvar() {
-    if (!titulo.trim() || !resumo.trim() || !conteudo.trim() || !autor.trim() || !data.trim()) {
+    if (!titulo.trim() || !descricao.trim() || !data.trim()) {
       Alert.alert('Atenção', 'Preencha todos os campos.');
       return;
     }
@@ -41,9 +39,7 @@ export function NovaNoticiaTela() {
     try {
       await adicionarNoticia({
         titulo: titulo.trim(),
-        resumo: resumo.trim(),
-        conteudo: conteudo.trim(),
-        autor: autor.trim(),
+        descricao: descricao.trim(),
         data: data.trim(),
       });
       navegacao.goBack();
@@ -74,41 +70,18 @@ export function NovaNoticiaTela() {
           </View>
 
           <View style={estilos.caixa}>
-            <Text style={estilos.rotulo}>Resumo</Text>
+            <Text style={estilos.rotulo}>Descrição</Text>
             <TextInput
-              value={resumo}
-              onChangeText={setResumo}
-              style={[estilos.entrada, estilos.entradaMultilinha]}
-              placeholder="Um resumo curto"
-              placeholderTextColor="#64748B"
-              multiline
-            />
-          </View>
-
-          <View style={estilos.caixa}>
-            <Text style={estilos.rotulo}>Conteúdo</Text>
-            <TextInput
-              value={conteudo}
-              onChangeText={setConteudo}
+              value={descricao}
+              onChangeText={setDescricao}
               style={[estilos.entrada, estilos.entradaAlta]}
-              placeholder="Texto completo"
+              placeholder="Escreva a descrição"
               placeholderTextColor="#64748B"
               multiline
             />
           </View>
 
           <View style={estilos.duasColunas}>
-            <View style={[estilos.caixa, estilos.metade]}>
-              <Text style={estilos.rotulo}>Autor</Text>
-              <TextInput
-                value={autor}
-                onChangeText={setAutor}
-                style={estilos.entrada}
-                placeholder="Seu nome"
-                placeholderTextColor="#64748B"
-              />
-            </View>
-
             <View style={[estilos.caixa, estilos.metade]}>
               <Text style={estilos.rotulo}>Data</Text>
               <TextInput
