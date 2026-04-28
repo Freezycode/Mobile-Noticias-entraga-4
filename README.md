@@ -44,13 +44,6 @@ npm install
 npx expo start
 ```
 
-O app consome a API pelo arquivo `services/api.ts`.
 
-### Observação importante (Android)
-
-No emulador Android, `localhost` aponta para o próprio emulador.
-Por isso o `baseURL` já usa `http://10.0.2.2:3333` no Android.
-
-Se você rodar no celular físico, troque o `baseURL` em `services/api.ts` para o IP do seu computador na rede (ex: `http://192.168.0.10:3333`).
 
 
